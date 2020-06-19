@@ -1,0 +1,43 @@
+{
+  "name": "freetype-draw",
+  "version": "1.0.0",
+  "description": "draw text to buffers using freetype2",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest",
+    "install": "prebuild-install -r napi || node-gyp rebuild",
+    "clean": "node-gyp clean",
+    "build": "node-gyp build",
+    "prebuild": "prebuild -r napi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdumetz/node-freetype-draw.git"
+  },
+  "keywords": [
+    "freetype"
+  ],
+  "author": "Sebastien DUMETZ <s.dumetz@holusion.com>",
+  "license": "MIT",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/sdumetz/node-freetype-draw/issues"
+  },
+  "homepage": "https://github.com/sdumetz/node-freetype-draw#readme",
+  "binary": {
+    "napi_versions": [
+      3
+    ]
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "node-addon-api": "^3.0.0",
+    "prebuild": "^10.0.0"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
+}
