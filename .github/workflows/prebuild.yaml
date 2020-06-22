@@ -6,7 +6,7 @@ on:
       - v*
 
 jobs:
-  test:
+  build:
     name: Build on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
@@ -28,21 +28,17 @@ jobs:
         npm test
       env:
         CI: true
-    - name: prebuild
+    - name: publish
       run: |
-        npm --verbose run prebuild
+        npx node-pre-gyp build
+        npx node-pre-gyp package
+        npx node-pre-gyp github publish
       env:
         CI: true
-
-    - name: Upload articats
-      uses: actions/upload-artifact@v1
-      with:
-        name: ${{ runner.os }}-prebuilds
-        path: prebuilds
-
+        NODE_PRE_GYP_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   publish:
-    name: Publish builds to release
-    needs: test
+    name: Publish package release
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -50,26 +46,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - name: Download linux articats
-      uses: actions/download-artifact@v1
-      with:
-        name: Linux-prebuilds
-    - name: Download windows articats
-      uses: actions/download-artifact@v1
-      with:
-        name: Windows-prebuilds
-    - name: Download macos articats
-      uses: actions/download-artifact@v1
-      with:
-        name: macOS-prebuilds
-    - name: Upload to Release
-      run: |
-        mkdir prebuilds
-        cp -R Linux-prebuilds/* prebuilds/
-        cp -R Windows-prebuilds/* prebuilds/
-        cp -R macOS-prebuilds/* prebuilds/
-        yarn --ignore-scripts
-        npx prebuild --upload-all ${{ secrets.GITHUB_TOKEN }}
     - name: publish to npmjs.com
       run: |
         npm publish --access public

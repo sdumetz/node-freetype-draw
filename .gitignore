@@ -29,3 +29,7 @@ node_modules/
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 prebuilds/
+
+build-tmp-napi-v*/
+bindings/
+build/stage/
