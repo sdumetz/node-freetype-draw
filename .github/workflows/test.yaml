@@ -24,7 +24,7 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm ci
-        npm run build
+        npm run build -- --build-from-source
         npm test
       env:
         CI: true
