@@ -1,4 +1,7 @@
 #include <napi.h>
+#include <string>
+#include <locale>
+#include <codecvt>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
@@ -81,6 +84,11 @@ Napi::Value Renderer::Open(const Napi::CallbackInfo& info){
   if ( error != FT_Err_Ok) {
     throw Napi::Error::New(env, "Failed to set font size "+errorString(error));
   }
+
+  error = FT_Select_Charmap(face, FT_ENCODING_UNICODE);
+  if(error != FT_Err_Ok){
+    throw Napi::Error::New(env, "Selected font does not have an unicode charmap "+errorString(error));
+  }
   return env.Undefined();
 }
 
@@ -99,8 +107,11 @@ Napi::Value Renderer::Draw(const Napi::CallbackInfo& info){
   FT_Int i, j, p, q;
   FT_Vector     pen;
   FT_GlyphSlot  slot = face->glyph;  /* a small shortcut */
+  std::string utf8Text = info[0].ToString().Utf8Value();
+  
+  std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> cvt;
+  std::u32string text = cvt.from_bytes(utf8Text);
 
-  std::string text = info[0].ToString().Utf8Value();
 
   Napi::Object args = (2 <= info.Length())? info[1].ToObject() : Napi::Object::New(env);
   pen.x = ((args.Has("x"))? args.Get("x").ToNumber().Int32Value() : 0);
@@ -117,14 +128,22 @@ Napi::Value Renderer::Draw(const Napi::CallbackInfo& info){
   }
 
 
-  for ( long unsigned int n = 0; n < text.length(); n++ )
+  for ( long unsigned int n = 0; n < text.size(); n++ )
   {
     /* load glyph image into the slot (erase previous one) */
-    error = FT_Load_Char( face, text[n], FT_LOAD_RENDER );
+    error = FT_Load_Char( face, text[n], FT_LOAD_DEFAULT );
     if ( error ){
       continue;  /* ignore errors */
     }
+    if(slot->format != FT_GLYPH_FORMAT_BITMAP){
+      error = FT_Render_Glyph( slot, 
+        FT_RENDER_MODE_NORMAL );
+      if ( error ){
+        continue;  /* ignore errors */
+      }
+    }
 
+    //
     FT_Int x = pen.x + slot->bitmap_left;
     FT_Int y = pen.y - slot->bitmap_top;
     FT_Int x_max = x + slot->bitmap.width;

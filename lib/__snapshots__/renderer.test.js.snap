@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renderer draw() draw missing char (作) 1`] = `
+"                         
+                         
+X X X X X X X X X        
+X X           X X        
+X X           X X        
+X X           X X        
+X X           X X        
+X X           X X        
+X X           X X        
+X X           X X        
+X X           X X        
+X X           X X        
+X X           X X        "
+`;
+
+exports[`Renderer draw() draw non-ASCII letter (é) 1`] = `
+"          X X X          
+        X X X            
+        X X              
+                         
+    X X X X X X          
+  X X X X X X X X        
+  X X X       X X        
+X X X         X X        
+X X X X X X X X X        
+X X X                    
+  X X X                  
+  X X X X X X X X        
+    X X X X X X X        "
+`;
+
+exports[`Renderer draw() draws a letter (H) 1`] = `
+"                         
+  X X X         X X X    
+  X X X         X X X    
+  X X X         X X X    
+  X X X         X X X    
+  X X X         X X X    
+  X X X X X X X X X X    
+  X X X         X X X    
+  X X X         X X X    
+  X X X         X X X    
+  X X X         X X X    
+  X X X         X X X    
+  X X X         X X X    "
+`;
