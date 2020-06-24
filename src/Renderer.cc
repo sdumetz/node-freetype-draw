@@ -52,7 +52,7 @@ Renderer::Renderer(const Napi::CallbackInfo &info) :
   this->buf.resize(this->width*this->height*4, 0x00);
 
   if(arg.Has("size")){
-    this->fontSize = arg.Get("size").As<Napi::Number>();
+    this->fontSize = (int32_t) arg.Get("size").As<Napi::Number>();
   }
 
   if(arg.Has("font")){
