@@ -16,6 +16,8 @@
       ],
       'sources': [
         'src/init.cc',
+        'src/Renderer.cc',
+        "src/Color.cc"
       ],
       "include_dirs" : [
         "<!@(node -p \"require('node-addon-api').include\")"

@@ -1,49 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Renderer draw() draw colored text (blue) 1`] = `
+"               55 55 55               
+            55 55 55                  
+            55 55                     
+                                      
+      55 55 55 55 55 55               
+   55 55 55 55 55 55 55 55            
+   55 55 55          55 55            
+55 55 55             55 55            
+55 55 55 55 55 55 55 55 55            
+55 55 55                              
+   55 55 55                           
+   55 55 55 55 55 55 55 55            
+      55 55 55 55 55 55 55            "
+`;
+
+exports[`Renderer draw() draw colored text (green) 1`] = `
+"               44 44 44               
+            44 44 44                  
+            44 44                     
+                                      
+      44 44 44 44 44 44               
+   44 44 44 44 44 44 44 44            
+   44 44 44          44 44            
+44 44 44             44 44            
+44 44 44 44 44 44 44 44 44            
+44 44 44                              
+   44 44 44                           
+   44 44 44 44 44 44 44 44            
+      44 44 44 44 44 44 44            "
+`;
+
+exports[`Renderer draw() draw colored text (red) 1`] = `
+"               33 33 33               
+            33 33 33                  
+            33 33                     
+                                      
+      33 33 33 33 33 33               
+   33 33 33 33 33 33 33 33            
+   33 33 33          33 33            
+33 33 33             33 33            
+33 33 33 33 33 33 33 33 33            
+33 33 33                              
+   33 33 33                           
+   33 33 33 33 33 33 33 33            
+      33 33 33 33 33 33 33            "
+`;
+
 exports[`Renderer draw() draw missing char (作) 1`] = `
-"                         
-                         
-X X X X X X X X X        
-X X           X X        
-X X           X X        
-X X           X X        
-X X           X X        
-X X           X X        
-X X           X X        
-X X           X X        
-X X           X X        
-X X           X X        
-X X           X X        "
+"                                      
+                                      
+34 ff ff ff ff ff ff ff cc            
+34 b4                18 cc            
+34 b4                18 cc            
+34 b4                18 cc            
+34 b4                18 cc            
+34 b4                18 cc            
+34 b4                18 cc            
+34 b4                18 cc            
+34 b4                18 cc            
+34 b4                18 cc            
+34 b4                18 cc            "
 `;
 
 exports[`Renderer draw() draw non-ASCII letter (é) 1`] = `
-"          X X X          
-        X X X            
-        X X              
-                         
-    X X X X X X          
-  X X X X X X X X        
-  X X X       X X        
-X X X         X X        
-X X X X X X X X X        
-X X X                    
-  X X X                  
-  X X X X X X X X        
-    X X X X X X X        "
+"               33 f7 51               
+            c db 75                  
+            a3 9c                     
+                                      
+      2d b1 ef f7 c6 3e               
+   2f f4 a6 22 12 7e f9 33            
+   b9 d6 4          c1 b0            
+6 fa 8a             82 ec            
+17 ff ff ff ff ff ff ff fe            
+8 fc 7e                              
+   bc cd 3                           
+   2f f3 a8 29 9 27 70 8d            
+      28 a8 ea f7 d7 8c 1a            "
 `;
 
 exports[`Renderer draw() draws a letter (H) 1`] = `
-"                         
-  X X X         X X X    
-  X X X         X X X    
-  X X X         X X X    
-  X X X         X X X    
-  X X X         X X X    
-  X X X X X X X X X X    
-  X X X         X X X    
-  X X X         X X X    
-  X X X         X X X    
-  X X X         X X X    
-  X X X         X X X    
-  X X X         X X X    "
+"                                      
+   6c ff 28             1c ff 78      
+   6c ff 28             1c ff 78      
+   6c ff 28             1c ff 78      
+   6c ff 28             1c ff 78      
+   6c ff 28             1c ff 78      
+   6c ff ff ff ff ff ff ff ff 78      
+   6c ff 28             1c ff 78      
+   6c ff 28             1c ff 78      
+   6c ff 28             1c ff 78      
+   6c ff 28             1c ff 78      
+   6c ff 28             1c ff 78      
+   6c ff 28             1c ff 78      "
 `;
