@@ -35,6 +35,7 @@ Napi::Object Renderer::Init(Napi::Env env, Napi::Object exports) {
 Renderer::Renderer(const Napi::CallbackInfo &info) : 
   Napi::ObjectWrap<Renderer>(info), 
   buf(),
+  fontSize(12),
   color()
 {
   Napi::Env env = info.Env();
@@ -51,9 +52,6 @@ Renderer::Renderer(const Napi::CallbackInfo &info) :
   this->height = arg.Has("height")? arg.Get("height").ToNumber().Uint32Value() : 300;
   this->buf.resize(this->width*this->height*4, 0x00);
 
-  if(arg.Has("size")){
-    this->fontSize = (int32_t) arg.Get("size").As<Napi::Number>();
-  }
 
   if(arg.Has("font")){
     this->Open(info);
@@ -71,11 +69,12 @@ Renderer::~Renderer(){
 
 Napi::Value Renderer::Open(const Napi::CallbackInfo& info){
   Napi::Env env = info.Env();
-  if(! info[0].ToObject().Get("font").IsString()){
+  Napi::Object arg =  info[0].ToObject();
+  if(! arg.Get("font").IsString()){
     throw Napi::Error::New(env, "Font path should be a string");
     return env.Undefined();
   }
-  std::string fontpath = info[0].ToObject().Get("font").ToString().Utf8Value();
+  std::string fontpath = arg.Get("font").ToString().Utf8Value();
 
   FT_Error error = FT_New_Face( this->library,
                      fontpath.c_str(),
@@ -91,8 +90,11 @@ Napi::Value Renderer::Open(const Napi::CallbackInfo& info){
   if(error != FT_Err_Ok){
     throw Napi::Error::New(env, "Selected font does not have an unicode charmap "+errorString(error));
   }
-  
-  this->SetSize(info, Napi::Number::New(env, this->fontSize));
+  if(arg.Has("size")){
+    this->SetSize(info, arg.Get("size"));
+  }else{
+    this->SetSize(info, Napi::Number::New(env, this->fontSize));
+  }
 
   return env.Undefined();
 }
