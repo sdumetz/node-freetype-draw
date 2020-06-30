@@ -32,7 +32,7 @@ jobs:
       run: |
         npx node-pre-gyp build
         npx node-pre-gyp package
-        npx node-pre-gyp-github publish
+        npx node-pre-gyp-github publish --release
       env:
         CI: true
         NODE_PRE_GYP_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -50,4 +50,4 @@ jobs:
       run: |
         npm publish --access public
       env:
-         NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+         NPM_TOKEN: ${{secrets.NPM_TOKEN}}

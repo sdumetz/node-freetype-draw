@@ -1,0 +1,5 @@
+.git/
+vendor/freetype/doc/
+vendor/freetype/builds/
+npm-debug.log
+config.gypi
