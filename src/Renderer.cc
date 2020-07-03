@@ -26,7 +26,11 @@ Napi::Object Renderer::Init(Napi::Env env, Napi::Object exports) {
 
   Napi::FunctionReference* constructor = new Napi::FunctionReference();
   *constructor = Napi::Persistent(func);
+
+  #if NAPI_VERSION > 5
   env.SetInstanceData(constructor);
+  #endif
+
   exports.Set("Renderer", func);
   return exports;
 }
