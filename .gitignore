@@ -30,6 +30,6 @@ node_modules/
 build/Release
 prebuilds/
 
-build-tmp-napi-v*/
+build-tmp-napi-v*/Release
 bindings/
 build/stage/

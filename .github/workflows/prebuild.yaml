@@ -30,6 +30,7 @@ jobs:
         CI: true
     - name: publish
       run: |
+        npx node-pre-gyp configure
         npx node-pre-gyp build
         npx node-pre-gyp package
         npx node-pre-gyp-github publish --release
