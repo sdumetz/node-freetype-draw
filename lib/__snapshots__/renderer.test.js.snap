@@ -1,97 +1,113 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renderer draw() draw colored text (blue) 1`] = `
-"               55 55 55               
-            55 55 55                  
-            55 55                     
+"                                      
                                       
-      55 55 55 55 55 55               
-   55 55 55 55 55 55 55 55            
-   55 55 55          55 55            
-55 55 55             55 55            
-55 55 55 55 55 55 55 55 55            
+                                      
+            55 55 55                  
+         55 55 55                     
+                                      
+   55 55 55 55 55 55                  
+   55 55 55 55 55 55 55               
+55 55 55       55 55 55               
+55 55 55 55 55 55 55 55               
 55 55 55                              
-   55 55 55                           
-   55 55 55 55 55 55 55 55            
-      55 55 55 55 55 55 55            "
+   55 55 55 55 55 55 55               
+   55 55 55 55 55 55                  "
 `;
 
 exports[`Renderer draw() draw colored text (green) 1`] = `
-"               44 44 44               
-            44 44 44                  
-            44 44                     
+"                                      
                                       
-      44 44 44 44 44 44               
-   44 44 44 44 44 44 44 44            
-   44 44 44          44 44            
-44 44 44             44 44            
-44 44 44 44 44 44 44 44 44            
-44 44 44                              
-   44 44 44                           
-   44 44 44 44 44 44 44 44            
-      44 44 44 44 44 44 44            "
+                                      
+            55 55 55                  
+         55 55 55                     
+                                      
+   55 55 55 55 55 55                  
+   55 55 55 55 55 55 55               
+55 55 55       55 55 55               
+55 55 55 55 55 55 55 55               
+55 55 55                              
+   55 55 55 55 55 55 55               
+   55 55 55 55 55 55                  "
 `;
 
 exports[`Renderer draw() draw colored text (red) 1`] = `
-"               33 33 33               
-            33 33 33                  
-            33 33                     
+"                                      
                                       
-      33 33 33 33 33 33               
-   33 33 33 33 33 33 33 33            
-   33 33 33          33 33            
-33 33 33             33 33            
-33 33 33 33 33 33 33 33 33            
-33 33 33                              
-   33 33 33                           
-   33 33 33 33 33 33 33 33            
-      33 33 33 33 33 33 33            "
+                                      
+            55 55 55                  
+         55 55 55                     
+                                      
+   55 55 55 55 55 55                  
+   55 55 55 55 55 55 55               
+55 55 55       55 55 55               
+55 55 55 55 55 55 55 55               
+55 55 55                              
+   55 55 55 55 55 55 55               
+   55 55 55 55 55 55                  "
 `;
 
 exports[`Renderer draw() draw missing char (作) 1`] = `
 "                                      
                                       
-34 ff ff ff ff ff ff ff cc            
-34 b4                18 cc            
-34 b4                18 cc            
-34 b4                18 cc            
-34 b4                18 cc            
-34 b4                18 cc            
-34 b4                18 cc            
-34 b4                18 cc            
-34 b4                18 cc            
-34 b4                18 cc            
-34 b4                18 cc            "
+                                      
+                                      
+5c ff ff ff ff ff ff 24               
+5c 60             94 24               
+5c 60             94 24               
+5c 60             94 24               
+5c 60             94 24               
+5c 60             94 24               
+5c 60             94 24               
+5c 60             94 24               
+5c 60             94 24               "
 `;
 
 exports[`Renderer draw() draw non-ASCII letter (é) 1`] = `
-"               33 f7 51               
-            c db 75                  
-            a3 9c                     
+"                                      
                                       
-      2d b1 ef f7 c6 3e               
-   2f f4 a6 22 12 7e f9 33            
-   b9 d6 4          c1 b0            
-6 fa 8a             82 ec            
-17 ff ff ff ff ff ff ff fe            
-8 fc 7e                              
-   bc cd 3                           
-   2f f3 a8 29 9 27 70 8d            
-      28 a8 ea f7 d7 8c 1a            "
+                                      
+            71 b6 8                  
+         54 af 6                     
+                                      
+   c 91 e1 f0 b4 1f                  
+   ae b6 21 e 8c ce 2               
+1c ff 1a       2 f1 2d               
+3d ff ff ff ff ff ff 4d               
+1e fd 13                              
+   af b3 26 a 35 af 7               
+   d 8b dd f4 c8 4f                  "
 `;
 
 exports[`Renderer draw() draws a letter (H) 1`] = `
 "                                      
-   6c ff 28             1c ff 78      
-   6c ff 28             1c ff 78      
-   6c ff 28             1c ff 78      
-   6c ff 28             1c ff 78      
-   6c ff 28             1c ff 78      
-   6c ff ff ff ff ff ff ff ff 78      
-   6c ff 28             1c ff 78      
-   6c ff 28             1c ff 78      
-   6c ff 28             1c ff 78      
-   6c ff 28             1c ff 78      
-   6c ff 28             1c ff 78      
-   6c ff 28             1c ff 78      "
+                                      
+                                      
+                                      
+   b8 90             c8 80            
+   b8 90             c8 80            
+   b8 90             c8 80            
+   b8 90             c8 80            
+   b8 ff ff ff ff ff ff 80            
+   b8 90             c8 80            
+   b8 90             c8 80            
+   b8 90             c8 80            
+   b8 90             c8 80            "
+`;
+
+exports[`Renderer draw() draws with default coordinates 1`] = `
+"                                      
+                                      
+                                      
+   b8 90             c8 80            
+   b8 90             c8 80            
+   b8 90             c8 80            
+   b8 90             c8 80            
+   b8 ff ff ff ff ff ff 80            
+   b8 90             c8 80            
+   b8 90             c8 80            
+   b8 90             c8 80            
+   b8 90             c8 80            
+                                      "
 `;

@@ -21,6 +21,7 @@ Napi::Object Renderer::Init(Napi::Env env, Napi::Object exports) {
     InstanceMethod("draw", &Renderer::Draw),
     InstanceAccessor<&Renderer::GetSize, &Renderer::SetSize>("size"),
     InstanceAccessor<&Renderer::GetColor, &Renderer::SetColor>("color"),
+    InstanceAccessor<&Renderer::GetPixFmt, &Renderer::SetPixFmt>("pixFmt"),
     InstanceAccessor<&Renderer::GetBuffer>("buffer"),
   });
 
@@ -39,6 +40,7 @@ Napi::Object Renderer::Init(Napi::Env env, Napi::Object exports) {
 Renderer::Renderer(const Napi::CallbackInfo &info) : 
   Napi::ObjectWrap<Renderer>(info), 
   buf(),
+  pix_fmt("RGBA"),
   fontSize(12),
   color()
 {
@@ -61,6 +63,9 @@ Renderer::Renderer(const Napi::CallbackInfo &info) :
     this->Open(info);
   }else{
     this->face = nullptr;
+  }
+  if(arg.Has("pixFmt")){
+    this->pix_fmt = PixFmt(arg.Get("pixFmt").ToString().Utf8Value());
   }
 }
 
@@ -142,8 +147,24 @@ Napi::Value Renderer::GetColor (const Napi::CallbackInfo& info){
   return Napi::String::New(env, this->color.toString());
 }
 
-std::vector<uint8_t>::size_type  Renderer::getIndex(FT_Int x, FT_Int y, Color_t c){
-  return (y*this->width + x) * 4 + (std::vector<uint8_t>::size_type) c;
+void Renderer::SetPixFmt (const Napi::CallbackInfo& info, const Napi::Value &value){
+  Napi::Env env = info.Env();
+  const std::string new_pix_format = value.ToString().Utf8Value();
+  try{
+    this->pix_fmt = PixFmt(new_pix_format);
+  }catch(const std::invalid_argument& e){ //Normally, just "const std::invalid_argument&" exceptions from stoi
+    throw Napi::Error::New(env, "Invalid argument : could not parse "+new_pix_format+ std::string(e.what()));
+  }
+}
+
+Napi::Value Renderer::GetPixFmt (const Napi::CallbackInfo& info){
+  Napi::Env env = info.Env();
+  return Napi::String::New(env, this->pix_fmt.toString());
+}
+
+
+std::vector<uint8_t>::size_type  Renderer::getIndex(FT_Int x, FT_Int y){
+  return (y*this->width + x) * 4;
 }
 
 Napi::Value Renderer::Clear(const Napi::CallbackInfo& info){
@@ -163,10 +184,9 @@ Napi::Value Renderer::Draw(const Napi::CallbackInfo& info){
   std::wstring_convert<std::codecvt_utf8<char32_t>, char32_t> cvt;
   std::u32string text = cvt.from_bytes(utf8Text);
 
-
   Napi::Object args = (2 <= info.Length())? info[1].ToObject() : Napi::Object::New(env);
   pen.x = ((args.Has("x"))? args.Get("x").ToNumber().Int32Value() : 0);
-  pen.y = ((args.Has("y"))? args.Get("y").ToNumber().Int32Value() : slot->bitmap_top);
+  pen.y = ((args.Has("y"))? args.Get("y").ToNumber().Int32Value() : (face->ascender*this->fontSize/face->units_per_EM));
 
 
   for ( long unsigned int n = 0; n < text.size(); n++ )
@@ -195,11 +215,16 @@ Napi::Value Renderer::Draw(const Napi::CallbackInfo& info){
         if ( i < 0 || j < 0 || i >= this->width || j >= this->height ) {
           continue;
         }
+        auto idx = getIndex(i, j);
         uint8_t a = slot->bitmap.buffer[q * slot->bitmap.width + p];
-        this->buf[getIndex(i, j, Color_t::B)] |= (a == 0)? 0 : color.b;
-        this->buf[getIndex(i, j, Color_t::G)] |= (a == 0)? 0 : color.g;
-        this->buf[getIndex(i, j, Color_t::R)] |= (a == 0)? 0 : color.r;
-        this->buf[getIndex(i, j, Color_t::A)] |= a * color.a/255;
+        if(pix_fmt.GetB() != std::string::npos) 
+          this->buf[idx + pix_fmt.GetB()] |= (a == 0)? 0 : color.b;
+        if(pix_fmt.GetG() != std::string::npos) 
+          this->buf[idx + pix_fmt.GetG()] |= (a == 0)? 0 : color.g;
+        if(pix_fmt.GetR() != std::string::npos) 
+          this->buf[idx + pix_fmt.GetR()] |= (a == 0)? 0 : color.r;
+        if(pix_fmt.GetA() != std::string::npos) 
+          this->buf[idx + pix_fmt.GetA()] |= a * color.a/255;
       }
     }
 

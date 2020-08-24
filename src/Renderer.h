@@ -9,11 +9,7 @@
 #include FT_FREETYPE_H
 
 #include "Color.h"
-
-enum Color_t {
-  R=0, G=1, B=2, A=3
-};
-
+#include "PixFmt.h"
 
 std::string errorString(FT_Error code);
 
@@ -33,6 +29,9 @@ class Renderer : public Napi::ObjectWrap<Renderer> {
     Napi::Value GetColor (const Napi::CallbackInfo& info);
     void SetColor (const Napi::CallbackInfo& info, const Napi::Value &value);
 
+    Napi::Value GetPixFmt (const Napi::CallbackInfo& info);
+    void SetPixFmt (const Napi::CallbackInfo& info, const Napi::Value &value);
+
     Napi::Value GetBuffer(const Napi::CallbackInfo& info);
   
   private:
@@ -45,7 +44,8 @@ class Renderer : public Napi::ObjectWrap<Renderer> {
     std::vector<uint8_t> buf;
     FT_Int width;
     FT_Int height;
-    std::vector<uint8_t>::size_type getIndex(FT_Int x, FT_Int y, Color_t c);
+    PixFmt pix_fmt;
+    std::vector<uint8_t>::size_type getIndex(FT_Int x, FT_Int y);
 
     //font configuration
     signed long fontSize;

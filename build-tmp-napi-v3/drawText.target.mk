@@ -84,7 +84,8 @@ INCS_Release := \
 OBJS := \
 	$(obj).target/$(TARGET)/src/init.o \
 	$(obj).target/$(TARGET)/src/Renderer.o \
-	$(obj).target/$(TARGET)/src/Color.o
+	$(obj).target/$(TARGET)/src/Color.o \
+	$(obj).target/$(TARGET)/src/PixFmt.o
 
 # Add to the list of files we specially track dependencies for.
 all_deps += $(OBJS)

@@ -17,7 +17,8 @@
       'sources': [
         'src/init.cc',
         'src/Renderer.cc',
-        "src/Color.cc"
+        "src/Color.cc",
+        "src/PixFmt.cc"
       ],
       "include_dirs" : [
         "<!@(node -p \"require('node-addon-api').include\")"
