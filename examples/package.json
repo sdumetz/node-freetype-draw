@@ -9,6 +9,7 @@
   "author": "Sebastien DUMETZ <s.dumetz@holusion.com>",
   "license": "MIT",
   "devDependencies": {
-    "commander": "^6.0.0"
+    "commander": "^6.0.0",
+    "fontconfig": "^0.1.0"
   }
 }

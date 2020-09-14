@@ -76,9 +76,9 @@
     "nodedir": "/home/sebastien/.node-gyp/12.18.2",
     "copy_dev_lib": "true",
     "standalone_static_library": 1,
-    "module": "/home/sebastien/repositories/node-freetype-draw/build-tmp-napi-v3/Release/drawText.node",
+    "module": "/home/sebastien/repositories/node-freetype-draw/build-tmp-napi-v3-x64/Release/drawText.node",
     "module_name": "drawText",
-    "module_path": "/home/sebastien/repositories/node-freetype-draw/build-tmp-napi-v3/Release",
+    "module_path": "/home/sebastien/repositories/node-freetype-draw/build-tmp-napi-v3-x64/Release",
     "napi_version": "6",
     "node_abi_napi": "napi",
     "node_napi_label": "napi-v3"

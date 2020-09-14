@@ -1,5 +1,17 @@
+# ignore files in npm pack
+#git files
 .git/
-vendor/freetype/doc/
+.github/
+
+#vendor files
+vendor/freetype/docs/
 vendor/freetype/builds/
+
+#nested node_modules
+examples/node_modules/
+
+#build artifacts
+build-tmp-*/
 npm-debug.log
 config.gypi
+freetype*.tgz
