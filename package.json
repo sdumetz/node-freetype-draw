@@ -1,6 +1,6 @@
 {
   "name": "freetype-draw",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "description": "draw text to buffers using freetype2",
   "main": "lib/index.js",
   "scripts": {
