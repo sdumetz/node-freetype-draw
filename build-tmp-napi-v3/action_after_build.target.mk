@@ -3,12 +3,12 @@
 TOOLSET := target
 TARGET := action_after_build
 ### Generated for copy rule.
-/home/sebastien/repositories/node-freetype-draw/build-tmp-napi-v3-x64/Release/drawText.node: TOOLSET := $(TOOLSET)
-/home/sebastien/repositories/node-freetype-draw/build-tmp-napi-v3-x64/Release/drawText.node: $(builddir)/drawText.node FORCE_DO_CMD
+/home/sebastien/repositories/node-freetype-draw/build-tmp-napi-v3/Release/drawText.node: TOOLSET := $(TOOLSET)
+/home/sebastien/repositories/node-freetype-draw/build-tmp-napi-v3/Release/drawText.node: $(builddir)/drawText.node FORCE_DO_CMD
 	$(call do_cmd,copy)
 
-all_deps += /home/sebastien/repositories/node-freetype-draw/build-tmp-napi-v3-x64/Release/drawText.node
-binding_gyp_action_after_build_target_copies = /home/sebastien/repositories/node-freetype-draw/build-tmp-napi-v3-x64/Release/drawText.node
+all_deps += /home/sebastien/repositories/node-freetype-draw/build-tmp-napi-v3/Release/drawText.node
+binding_gyp_action_after_build_target_copies = /home/sebastien/repositories/node-freetype-draw/build-tmp-napi-v3/Release/drawText.node
 
 ### Rules for final target.
 # Build our special outputs first.

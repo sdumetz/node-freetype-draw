@@ -4,6 +4,9 @@ TOOLSET := target
 TARGET := drawText
 DEFS_Debug := \
 	'-DNODE_GYP_MODULE_NAME=drawText' \
+	'-DUSING_UV_SHARED=1' \
+	'-DUSING_V8_SHARED=1' \
+	'-DV8_DEPRECATION_WARNINGS=1' \
 	'-DV8_DEPRECATION_WARNINGS' \
 	'-DV8_IMMINENT_DEPRECATION_WARNINGS' \
 	'-D_LARGEFILE_SOURCE' \
@@ -36,15 +39,21 @@ CFLAGS_CC_Debug := \
 	-std=gnu++1y
 
 INCS_Debug := \
-	-I/home/sebastien/.node-gyp/12.18.2/include/node \
-	-I/home/sebastien/.node-gyp/12.18.2/src \
-	-I/home/sebastien/.node-gyp/12.18.2/deps/uv/include \
-	-I/home/sebastien/.node-gyp/12.18.2/deps/v8/include \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/include/node \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/src \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/deps/openssl/config \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/deps/openssl/openssl/include \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/deps/uv/include \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/deps/zlib \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/deps/v8/include \
 	-I/home/sebastien/repositories/node-freetype-draw/node_modules/node-addon-api \
 	-I$(srcdir)/vendor/freetype/include
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=drawText' \
+	'-DUSING_UV_SHARED=1' \
+	'-DUSING_V8_SHARED=1' \
+	'-DV8_DEPRECATION_WARNINGS=1' \
 	'-DV8_DEPRECATION_WARNINGS' \
 	'-DV8_IMMINENT_DEPRECATION_WARNINGS' \
 	'-D_LARGEFILE_SOURCE' \
@@ -74,10 +83,13 @@ CFLAGS_CC_Release := \
 	-std=gnu++1y
 
 INCS_Release := \
-	-I/home/sebastien/.node-gyp/12.18.2/include/node \
-	-I/home/sebastien/.node-gyp/12.18.2/src \
-	-I/home/sebastien/.node-gyp/12.18.2/deps/uv/include \
-	-I/home/sebastien/.node-gyp/12.18.2/deps/v8/include \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/include/node \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/src \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/deps/openssl/config \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/deps/openssl/openssl/include \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/deps/uv/include \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/deps/zlib \
+	-I/home/sebastien/.cache/node-gyp/14.16.0/deps/v8/include \
 	-I/home/sebastien/repositories/node-freetype-draw/node_modules/node-addon-api \
 	-I$(srcdir)/vendor/freetype/include
 

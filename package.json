@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "install": "node-pre-gyp install --fallback-to-build",
+    "rebuild": "node-pre-gyp rebuild",
     "clean": "node-pre-gyp clean",
     "build": "node-pre-gyp build"
   },
