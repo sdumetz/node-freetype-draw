@@ -1,0 +1,35 @@
+name: Node CI
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  test:
+    name: Test on node ${{ matrix.node-version }} and ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 16.x]
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: patch node gyp on windows to support Visual Studio 2019
+      if: matrix.os == 'windows-latest'
+      run: |
+        npm install --global node-gyp@latest
+        npm prefix -g | % {npm config set node_gyp "$_\node_modules\node-gyp\bin\node-gyp.js"}
+    - name: npm install, build, and test
+      run: |
+        npm ci
+        npm rebuild
+        npm test
+      env:
+        CI: true

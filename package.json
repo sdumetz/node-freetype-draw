@@ -5,10 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
-    "install": "node-pre-gyp install --fallback-to-build",
-    "rebuild": "node-pre-gyp rebuild",
-    "clean": "node-pre-gyp clean",
-    "build": "node-pre-gyp build"
+    "install": "node-gyp-build"
   },
   "repository": {
     "type": "git",
@@ -24,25 +21,14 @@
     "url": "https://github.com/sdumetz/node-freetype-draw/issues"
   },
   "homepage": "https://github.com/sdumetz/node-freetype-draw#readme",
-  "binary": {
-    "module_name": "drawText",
-    "module_path": "./build-tmp-{node_napi_label}/Release",
-    "remote_path": "v{version}",
-    "package_name": "{module_name}-v{version}-{node_napi_label}-{platform}-{arch}.tar.gz",
-    "host": "https://github.com/sdumetz/node-freetype-draw/releases/download/",
-    "napi_versions": [
-      3
-    ]
-  },
   "engines": {
     "node": ">=10"
   },
   "dependencies": {
     "node-addon-api": "^3.0.0",
-    "node-pre-gyp": "^0.15.0"
+    "node-gyp-build": "^4.2.3"
   },
   "devDependencies": {
-    "jest": "^26.0.1",
-    "node-pre-gyp-github": "^1.4.3"
+    "jest": "^26.0.1"
   }
 }
