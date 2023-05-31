@@ -15,10 +15,10 @@ class PixFmt {
     operator std::string() {
       return toString();
     }
-    size_t GetR();
-    size_t GetG();
-    size_t GetB();
-    size_t GetA();
+    size_t R;
+    size_t G;
+    size_t B;
+    size_t A;
   private:
     std::string str_fmt; 
 };

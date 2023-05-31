@@ -210,6 +210,8 @@ Napi::Value Renderer::Draw(const Napi::CallbackInfo& info){
     FT_Int x_max = x + slot->bitmap.width;
     FT_Int y_max =  y + slot->bitmap.rows;
 
+    bool has_alpha = pix_fmt.A != std::string::npos;
+
     for ( i = x, p = 0; i < x_max; i++, p++ ) {
       for ( j = y, q = 0; j < y_max; j++, q++ ) {
         if ( i < 0 || j < 0 || i >= this->width || j >= this->height ) {
@@ -217,14 +219,14 @@ Napi::Value Renderer::Draw(const Napi::CallbackInfo& info){
         }
         auto idx = getIndex(i, j);
         uint8_t a = slot->bitmap.buffer[q * slot->bitmap.width + p];
-        if(pix_fmt.GetB() != std::string::npos) 
-          this->buf[idx + pix_fmt.GetB()] |= (a == 0)? 0 : color.b;
-        if(pix_fmt.GetG() != std::string::npos) 
-          this->buf[idx + pix_fmt.GetG()] |= (a == 0)? 0 : color.g;
-        if(pix_fmt.GetR() != std::string::npos) 
-          this->buf[idx + pix_fmt.GetR()] |= (a == 0)? 0 : color.r;
-        if(pix_fmt.GetA() != std::string::npos) 
-          this->buf[idx + pix_fmt.GetA()] |= a * color.a/255;
+        if(pix_fmt.B != std::string::npos) 
+          this->buf[idx + pix_fmt.B] |= (a == 0)? 0 : (has_alpha? color.b: color.b*a/255);
+        if(pix_fmt.G != std::string::npos) 
+          this->buf[idx + pix_fmt.G] |= (a == 0)? 0 : (has_alpha? color.g: color.g*a/255);
+        if(pix_fmt.R != std::string::npos) 
+          this->buf[idx + pix_fmt.R] |= (a == 0)? 0 : (has_alpha? color.r: color.r*a/255);
+        if(has_alpha) 
+          this->buf[idx + pix_fmt.A] |= (((int)a) * ((int)color.a)/255);
       }
     }
 

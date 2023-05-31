@@ -4,8 +4,12 @@ TOOLSET := target
 TARGET := libfreetype
 DEFS_Debug := \
 	'-DNODE_GYP_MODULE_NAME=libfreetype' \
+	'-DUSING_UV_SHARED=1' \
+	'-DUSING_V8_SHARED=1' \
+	'-DV8_DEPRECATION_WARNINGS=1' \
 	'-DV8_DEPRECATION_WARNINGS' \
 	'-DV8_IMMINENT_DEPRECATION_WARNINGS' \
+	'-D_GLIBCXX_USE_CXX11_ABI=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-D__STDC_FORMAT_MACROS' \
@@ -35,19 +39,26 @@ CFLAGS_C_Debug :=
 CFLAGS_CC_Debug := \
 	-fno-rtti \
 	-fno-exceptions \
-	-std=gnu++1y
+	-std=gnu++14
 
 INCS_Debug := \
-	-I/home/sebastien/.node-gyp/14.16.0/include/node \
-	-I/home/sebastien/.node-gyp/14.16.0/src \
-	-I/home/sebastien/.node-gyp/14.16.0/deps/uv/include \
-	-I/home/sebastien/.node-gyp/14.16.0/deps/v8/include \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/include/node \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/src \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/deps/openssl/config \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/deps/openssl/openssl/include \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/deps/uv/include \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/deps/zlib \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/deps/v8/include \
 	-I$(srcdir)/vendor/freetype/include
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=libfreetype' \
+	'-DUSING_UV_SHARED=1' \
+	'-DUSING_V8_SHARED=1' \
+	'-DV8_DEPRECATION_WARNINGS=1' \
 	'-DV8_DEPRECATION_WARNINGS' \
 	'-DV8_IMMINENT_DEPRECATION_WARNINGS' \
+	'-D_GLIBCXX_USE_CXX11_ABI=1' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-D__STDC_FORMAT_MACROS' \
@@ -74,13 +85,16 @@ CFLAGS_C_Release :=
 CFLAGS_CC_Release := \
 	-fno-rtti \
 	-fno-exceptions \
-	-std=gnu++1y
+	-std=gnu++14
 
 INCS_Release := \
-	-I/home/sebastien/.node-gyp/14.16.0/include/node \
-	-I/home/sebastien/.node-gyp/14.16.0/src \
-	-I/home/sebastien/.node-gyp/14.16.0/deps/uv/include \
-	-I/home/sebastien/.node-gyp/14.16.0/deps/v8/include \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/include/node \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/src \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/deps/openssl/config \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/deps/openssl/openssl/include \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/deps/uv/include \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/deps/zlib \
+	-I/home/sebastien/.cache/node-gyp/16.9.1/deps/v8/include \
 	-I$(srcdir)/vendor/freetype/include
 
 OBJS := \
@@ -112,6 +126,8 @@ OBJS := \
 	$(obj).target/$(TARGET)/vendor/freetype/src/autofit/autofit.o \
 	$(obj).target/$(TARGET)/vendor/freetype/src/cache/ftcache.o \
 	$(obj).target/$(TARGET)/vendor/freetype/src/gzip/ftgzip.o \
+	$(obj).target/$(TARGET)/vendor/freetype/src/lzw/ftlzw.o \
+	$(obj).target/$(TARGET)/vendor/freetype/src/bzip2/ftbzip2.o \
 	$(obj).target/$(TARGET)/vendor/freetype/src/gxvalid/gxvalid.o \
 	$(obj).target/$(TARGET)/vendor/freetype/src/otvalid/otvalid.o \
 	$(obj).target/$(TARGET)/vendor/freetype/src/psaux/psaux.o \
